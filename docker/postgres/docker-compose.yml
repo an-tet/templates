@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+    restart: always
+    ports:
+      - "${DB_EXPOSED_PORT}:${DB_CONTAINER_PORT}"
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USERNAME}
+    container_name: ${DB_NAME}
+    volumes:
+      - ./docker_postgres_seed.sql:/docker-entrypoint-initdb.d/docker_postgres_seed.sql
+volumes:
+  postgres-db:
+    external: false

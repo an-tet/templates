@@ -4,15 +4,14 @@ services:
   db:
     image: postgres
     restart: always
-    container_name: ${DB_NAME}
+    container_name: ${DATABASE_NAME}
     ports:
-      - '${DB_EXPOSED_PORT}:${DB_CONTAINER_PORT}'
+      - '${DATABASE_EXPOSED_PORT}:${DATABASE_CONTAINER_PORT}'
     environment:
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
-      POSTGRES_DB: ${DB_NAME}
-      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_DB: ${DATABASE_NAME}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_USER: ${DATABASE_USERNAME}
     volumes:
-      - postgres-data:/var/lib/postgresql/data
       - ./docker_postgres_seed.sql:/docker-entrypoint-initdb.d/docker_postgres_seed.sql
   pgadmin:
     image: dpage/pgadmin4

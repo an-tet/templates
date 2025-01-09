@@ -1,0 +1,1 @@
+podman run -d --name localstack -p 4566:4566 -p 4571:4571 -v localstack_data:/var/lib/localstack -e SERVICES=s3,dynamodb -e DEBUG=1  localstack/localstack
